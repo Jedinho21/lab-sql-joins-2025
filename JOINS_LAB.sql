@@ -67,15 +67,14 @@ JOIN FILM AS F USING(FILM_ID)
 WHERE F.TITLE="Academy Dinosaur" AND S.STORE_ID =1;
 
 -- 8.Provide a list of all distinct film titles, along with their availability status in the inventory.
--- Include a column indicating whether each title is 'Available' or 'NOT available.' Note that there are 42 titles that are not in the inventory,
--- and this information can be obtained using a CASE statement combined with IFNULL."
+-- Include a column indicating whether each title is 'Available' or 'NOT available.' 
 
 
 SELECT DISTINCT(F.TITLE),COUNT(i.film_id) AS ‘Number_of_Copies’,
      CASE
          WHEN ISNULL(I.film_ID) THEN 'NOT AVAILABLE'
          ELSE 'Available'
-	END AS 'Rental available'
+	END AS 'Rental Availability'
      
 FROM FILM AS F
 LEFT JOIN INVENTORY AS I USING(FILM_ID)
